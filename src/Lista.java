@@ -10,6 +10,12 @@ public class Lista {
     public void insere(Item item){
         //@TODO inserir
     }
+    public void buscar(Item item){
+        //@TODO inserir
+    }
+    public void remover(Item item){
+        //@TODO inserir
+    }
 
     public void mostrar() {
         System.out.print("[");

@@ -7,6 +7,14 @@ public class Item {
         this.preco = preco;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
