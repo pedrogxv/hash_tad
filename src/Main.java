@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Lista lista = new Lista(20);
+        Lista lista = new Lista(30);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -37,9 +37,18 @@ public class Main {
                     lista.mostrar();
                     break;
                 case 3:
-                    //buscar
+                    System.out.println("Nome do item que voce quer remover:");
+                    String nomeParaBuscar = scanner.next();
+                    System.out.println(lista.buscar(nomeParaBuscar));
+                    System.out.println("Esse item está na posicão:"+lista.getHash(nomeParaBuscar));
+
+                    break;
                 case 4:
-                    //remover
+                    System.out.println("Nome do item que voce quer remover:");
+                    String nomeParaRemover = scanner.next();
+                    lista.remover(nomeParaRemover);
+                    System.out.println("Item removido com sucesso!");
+                    break;
                 case 9:
                     System.out.println("Saindo! ");
                     break menu;

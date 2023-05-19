@@ -16,8 +16,8 @@ public class Lista {
         return this.vetor[getHash(nome)];
     }
 
-    public void remover(Item item) {
-        // @TODO inserir
+    public void remover(String nome) {
+        this.vetor[getHash(nome)] = null;
     }
 
     public void mostrar() {
@@ -44,6 +44,11 @@ public class Lista {
                 int hashNum = (int) letra;
                 soma += hashNum;
             }
+        }
+        //se for maior q o tamanho do vetor divide por 2
+        int tamanhoMax = 30000;
+        if(soma>=tamanhoMax){
+            soma /= 2;
         }
         int index = (int) Math.floor(soma / 100);
         return index;
