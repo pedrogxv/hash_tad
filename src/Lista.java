@@ -8,16 +8,16 @@ public class Lista {
     }
 
     public void insere(Item item) {
-        int index = getHash(item);
+        int index = getHash(item.getNome());
         this.vetor[index] = item;
     }
 
-    public void buscar(Item item) {
-        //@TODO inserir
+    public Item buscar(String nome) {
+        return this.vetor[getHash(nome)];
     }
 
     public void remover(Item item) {
-        //@TODO inserir
+        // @TODO inserir
     }
 
     public void mostrar() {
@@ -29,18 +29,18 @@ public class Lista {
         System.out.print("] ");
     }
 
-    public int getHash(Item item) {
+    public int getHash(String nome) {
         int soma = 0;
-        char a = item.getNome().charAt(0);
-        char b = item.getNome().charAt(1);
-        char c = item.getNome().charAt(2);
+        char a = nome.charAt(0);
+        char b = nome.charAt(1);
+        char c = nome.charAt(2);
         int aAsc = (int) a * 2;
         int bAsc = (int) b * 3;
         int cAsc = (int) c * 4;
         soma += aAsc + bAsc + cAsc;
-        if (item.getNome().length() > 3) {
-            for (int i = 0; i < item.getNome().length(); i++) {
-                char letra = item.getNome().charAt(i);
+        if (nome.length() > 3) {
+            for (int i = 0; i < nome.length(); i++) {
+                char letra = nome.charAt(i);
                 int hashNum = (int) letra;
                 soma += hashNum;
             }

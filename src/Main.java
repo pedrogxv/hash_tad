@@ -21,14 +21,14 @@ public class Main {
             System.out.println("--------------------------------------------------");
             int resposta = scanner.nextInt();
 
-            switch (resposta){
+            switch (resposta) {
                 case 1:
                     System.out.println("Nome do item:");
                     String nome = scanner.next();
                     System.out.println("Valor do item:");
                     int preco = scanner.nextInt();
 
-                    lista.insere(new Item(nome,preco));
+                    lista.insere(new Item(nome, preco));
 
                     System.out.println("Item adicionado com sucesso!");
                     break;
