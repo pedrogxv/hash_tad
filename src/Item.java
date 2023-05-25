@@ -1,14 +1,24 @@
 public class Item {
+    public int getQuantidade() {
+        return quantidade;
+    }
+
     private final int quantidade;
     private final String nome;
     private final float preco;
+
+    public String getIndex() {
+        return index;
+    }
+
     private final String index;
 
     public Item(int quantidade, String nome, float preco, String index) {
         this.quantidade = quantidade;
         this.nome = nome;
+        if(this.)
         this.preco = preco;
-        this.index = index.toLowerCase();
+        this.index = index;
     }
 
     public String getNome() {
@@ -18,6 +28,7 @@ public class Item {
     public float getPreco() {
         return preco;
     }
+
 
     @Override
     public String toString() {

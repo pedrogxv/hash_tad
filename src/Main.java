@@ -29,7 +29,7 @@ public class Main {
                     System.out.println("Quantidade do item:");
                     int quantidade = scanner.nextInt();
                     System.out.println("Gostaria de armezanenar esse item por qual atributo? ");
-                    System.out.println("N - Nome \nC - Codigo \nP - Preço ");
+                    System.out.println("N - Nome \nQ - Quantidade \nP - Preço ");
                     String index = scanner.next();
 
                     lista.insere(new Item(quantidade, nome, preco, index));
@@ -42,7 +42,11 @@ public class Main {
                     break;
                 // BUSCA
                 case 3:
-                    System.out.println("Nome do item que voce quer buscar:");
+                    System.out.println("Com qual atributo o item foi cadastrado?");
+                    System.out.println("N - Nome \nQ - Quantidade \nP - Preço ");
+                    String atributo = scanner.next();
+
+                    System.out.println("Qual o valor desse atributo no item que voce quer buscar?");
 
                     String busca = scanner.next();
                     Item itemEncontrado = lista.buscar(busca);

@@ -1,3 +1,4 @@
+
 public class Lista {
     private final int tamanho;
     public Item[] vetor;
@@ -8,7 +9,27 @@ public class Lista {
     }
 
     public void insere(Item item) {
-        int index = getHash(item.getNome());
+        String finder = null;
+        switch (item.getIndex()) {
+            //caso o atributo escolhido seja nome
+            case "N":
+                finder = item.getNome();
+                break;
+            //caso o atributo escolhido seja preco
+            case "P":
+                finder = Float.toString(item.getPreco());
+                break;
+            //caso o atributo escolhido seja quantidade
+            case "Q":
+                finder = Integer.toString(item.getQuantidade());
+                break;
+
+            default:
+                break;
+        }
+
+        int index = getHash(finder);
+
         this.vetor[index] = item;
     }
 
@@ -30,13 +51,18 @@ public class Lista {
     }
 
     public int getHash(String busca) {
-        int soma = 0;
+        int soma = 0, cAsc = 0, bAsc = 0;
+        int lenght = busca.length();
         char a = busca.charAt(0);
-        char b = busca.charAt(1);
-        char c = busca.charAt(2);
+        if (lenght > 1) {
+            char b = busca.charAt(1);
+            bAsc = (int) b * 3;
+        }
+        if (lenght > 2) {
+            char c = busca.charAt(2);
+            cAsc = (int) c * 4;
+        }
         int aAsc = (int) a * 2;
-        int bAsc = (int) b * 3;
-        int cAsc = (int) c * 4;
         soma += aAsc + bAsc + cAsc;
         if (busca.length() > 3) {
             for (int i = 0; i < busca.length(); i++) {
@@ -48,12 +74,10 @@ public class Lista {
         //se for maior q o tamanho do vetor divide por 2
         int tamanhoMax = 30000;
 
-        if(soma>=tamanhoMax) soma /= 2;
+        if (soma >= tamanhoMax) soma /= 2;
 
         //para numeros
-        if(soma>1000){
-            return (int) Math.floor(soma / 100);
-        }
-        return soma;
+        return (int) Math.floor(soma / 100);
+
     }
 }
