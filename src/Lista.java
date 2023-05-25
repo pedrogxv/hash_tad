@@ -57,16 +57,19 @@ public class Lista {
         int soma = 0, cAsc = 0, bAsc = 0;
         int lenght = busca.length();
         char a = busca.charAt(0);
+        //caso busca seja <2
         if (lenght > 1) {
             char b = busca.charAt(1);
             bAsc = (int) b * 3;
         }
+        //caso busca seja <3
         if (lenght > 2) {
             char c = busca.charAt(2);
             cAsc = (int) c * 4;
         }
         int aAsc = (int) a * 2;
         soma += aAsc + bAsc + cAsc;
+        //multiplica ate o [3] da string (se tiver, se nao ate o 2, ou 1) por pesos.
         if (busca.length() > 3) {
             for (int i = 0; i < busca.length(); i++) {
                 char letra = busca.charAt(i);

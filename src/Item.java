@@ -34,6 +34,7 @@ public class Item {
         return "Item{" +
                 "nome='" + nome + '\'' +
                 ", preco=" + preco +
+                ", quantidade=" + quantidade +
                 '}';
     }
 }
