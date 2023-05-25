@@ -1,5 +1,5 @@
 public class Lista {
-    private int tamanho;
+    private final int tamanho;
     public Item[] vetor;
 
     public Lista(int tamanho) {
@@ -12,8 +12,8 @@ public class Lista {
         this.vetor[index] = item;
     }
 
-    public Item buscar(String nome) {
-        return this.vetor[getHash(nome)];
+    public Item buscar(String busca) {
+        return this.vetor[getHash(busca)];
     }
 
     public void remover(String nome) {
@@ -29,28 +29,31 @@ public class Lista {
         System.out.print("] ");
     }
 
-    public int getHash(String nome) {
+    public int getHash(String busca) {
         int soma = 0;
-        char a = nome.charAt(0);
-        char b = nome.charAt(1);
-        char c = nome.charAt(2);
+        char a = busca.charAt(0);
+        char b = busca.charAt(1);
+        char c = busca.charAt(2);
         int aAsc = (int) a * 2;
         int bAsc = (int) b * 3;
         int cAsc = (int) c * 4;
         soma += aAsc + bAsc + cAsc;
-        if (nome.length() > 3) {
-            for (int i = 0; i < nome.length(); i++) {
-                char letra = nome.charAt(i);
+        if (busca.length() > 3) {
+            for (int i = 0; i < busca.length(); i++) {
+                char letra = busca.charAt(i);
                 int hashNum = (int) letra;
                 soma += hashNum;
             }
         }
         //se for maior q o tamanho do vetor divide por 2
         int tamanhoMax = 30000;
-        if(soma>=tamanhoMax){
-            soma /= 2;
+
+        if(soma>=tamanhoMax) soma /= 2;
+
+        //para numeros
+        if(soma>1000){
+            return (int) Math.floor(soma / 100);
         }
-        int index = (int) Math.floor(soma / 100);
-        return index;
+        return soma;
     }
 }

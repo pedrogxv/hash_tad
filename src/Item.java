@@ -1,10 +1,14 @@
 public class Item {
-    private String nome;
-    private float preco;
+    private final int quantidade;
+    private final String nome;
+    private final float preco;
+    private final String index;
 
-    public Item(String nome, float preco) {
+    public Item(int quantidade, String nome, float preco, String index) {
+        this.quantidade = quantidade;
         this.nome = nome;
         this.preco = preco;
+        this.index = index.toLowerCase();
     }
 
     public String getNome() {
