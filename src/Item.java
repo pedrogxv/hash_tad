@@ -16,7 +16,6 @@ public class Item {
     public Item(int quantidade, String nome, float preco, String index) {
         this.quantidade = quantidade;
         this.nome = nome;
-        if(this.)
         this.preco = preco;
         this.index = index;
     }

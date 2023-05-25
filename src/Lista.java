@@ -18,6 +18,9 @@ public class Lista {
             //caso o atributo escolhido seja preco
             case "P":
                 finder = Float.toString(item.getPreco());
+                if(finder.endsWith(".0")){
+                    finder = finder.replace(".0","");
+                }
                 break;
             //caso o atributo escolhido seja quantidade
             case "Q":
