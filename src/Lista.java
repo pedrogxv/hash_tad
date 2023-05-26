@@ -1,5 +1,5 @@
 
-public class Lista {
+public class Lista<T> {
     private final int tamanho;
     public Item[] vetor;
 
@@ -9,41 +9,71 @@ public class Lista {
     }
 
     public void insere(Item item) {
-        String finder = null;
+        int index = -1;
+
         switch (item.getIndex()) {
             //caso o atributo escolhido seja nome
-            case "N":
-                finder = item.getNome();
-                break;
+            case "N" -> index = getHashString(item.getNome());
+
             //caso o atributo escolhido seja preco
-            case "P":
-                finder = Float.toString(item.getPreco());
-                if(finder.endsWith(".0")){
-                    finder = finder.replace(".0","");
-                }
-                break;
+            case "P" -> index = getHashFloat(item.getPreco());
+
             //caso o atributo escolhido seja quantidade
-            case "Q":
-                finder = Integer.toString(item.getQuantidade());
-                break;
-
-            default:
-                break;
+            case "Q" -> index = getHashInt(item.getQuantidade());
+            default -> {
+            }
         }
-
-        int index = getHash(finder);
 
         this.vetor[index] = item;
     }
 
-    public Item buscar(String busca) {
-        return this.vetor[getHash(busca)];
+    //buscar
+    public Item buscar(String busca, String atributo) {
+        int index = 0;
+
+        if (atributo.equals("Q")) {
+            index = getHashInt(Integer.parseInt(busca));
+        }
+        if (atributo.equals("P")) {
+            index = getHashFloat(Float.parseFloat(busca));
+        }
+        if (atributo.equals("N")) {
+            index = getHashString(busca);
+        }
+
+        return this.vetor[index];
     }
 
-    public void remover(String nome) {
-        this.vetor[getHash(nome)] = null;
+    public boolean remover(String remover, String atributo) {
+        int index = 0;
+        boolean existe = true;
+
+
+        if (atributo.equals("Q")) {
+            index = getHashInt(Integer.parseInt(remover));
+        }
+        if (atributo.equals("P")) {
+            index = getHashFloat(Float.parseFloat(remover));
+        }
+        if (atributo.equals("N")) {
+            index = getHashString(remover);
+        }
+
+        if (this.vetor[index] == null) {
+            existe = false;
+            return existe;
+
+        } else {
+            existe = true;
+            this.vetor[index] = null;
+            return existe;
+        }
     }
 
+    //remover
+
+
+    //mostrar
     public void mostrar() {
         System.out.print("[");
         for (int i = 0; i < this.tamanho; i++) {
@@ -53,10 +83,13 @@ public class Lista {
         System.out.print("] ");
     }
 
-    public int getHash(String busca) {
+    //hash string
+    public int getHashString(String busca) {
         int soma = 0, cAsc = 0, bAsc = 0;
         int lenght = busca.length();
         char a = busca.charAt(0);
+        //transformando as strings em int (ascii)
+
         //caso busca seja <2
         if (lenght > 1) {
             char b = busca.charAt(1);
@@ -73,17 +106,31 @@ public class Lista {
         if (busca.length() > 3) {
             for (int i = 0; i < busca.length(); i++) {
                 char letra = busca.charAt(i);
-                int hashNum = (int) letra;
-                soma += hashNum;
+                soma += letra;
             }
         }
+
         //se for maior q o tamanho do vetor divide por 2
-        int tamanhoMax = 30000;
+        int tamanhoMax = this.tamanho * 1000;
 
         if (soma >= tamanhoMax) soma /= 2;
 
         //para numeros
-        return (int) Math.floor(soma / 100);
+        return (int) Math.floor((double) soma / 100);
+    }
 
+    public int getHashInt(int numero) {
+        int tamanhoTabela = this.tamanho;//tamanho do vetor
+        double constante = 0.6180339887; // Exemplo de constante (número irracional)
+        double produto = numero * constante;
+        double parteFracionaria = produto - Math.floor(produto);
+
+        return (int) (tamanhoTabela * parteFracionaria);
+    }
+
+    public int getHashFloat(float numero) {
+        int tamanhoTabela = this.tamanho;//tamanho do vetor
+        int bits = Float.floatToIntBits(numero);
+        return bits % tamanhoTabela;
     }
 }
