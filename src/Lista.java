@@ -1,6 +1,6 @@
 
 public class Lista {
-    private final int tamanho;
+    public final int tamanho;
     public Item[] vetor;
 
     public Lista(int tamanho) {

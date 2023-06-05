@@ -54,7 +54,7 @@ public class Main {
 
                     // perdoai-me pelo if-else 🙏
                     if (itemEncontrado != null) {
-                        System.out.println("=> Esse item está na posicão:" + lista.getHashString(busca));
+                        System.out.println("=> Esse item está na posicão:" + Hash.fromString(busca, lista.tamanho));
                         System.out.println("[✅] Encontramos este item:" + itemEncontrado);
                     } else {
                         System.out.println("[!] Item não encontrado!");
